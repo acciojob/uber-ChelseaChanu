@@ -50,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Driver> listOfDrivers = driverRepository2.findAll(Sort.by(Sort.Direction.ASC, "driverId"));
 	
 		for(Driver drivers:listOfDrivers){
-			if(drivers.getCab().isAvailable()==Boolean.TRUE){
+			if(drivers.getCab().getAvailable()==Boolean.TRUE){
 				driver = drivers;
 				break;
 			}
@@ -63,7 +63,7 @@ public class CustomerServiceImpl implements CustomerService {
 		//setting tripBooking
 		tripBooking.setFromLocation(fromLocation);
 		tripBooking.setToLocation(toLocation);
-		tripBooking.setDistanceInkm(distanceInKm);
+		tripBooking.setDistanceInKm(distanceInKm);
 		tripBooking.setStatus(TripStatus.CONFIRMED);
 		tripBooking.setDriver(driver);	
 

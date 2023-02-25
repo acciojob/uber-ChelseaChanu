@@ -31,7 +31,7 @@ public class Admin{
         return adminId;
     }
 
-    public void setId(int adminId) {
+    public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
 
