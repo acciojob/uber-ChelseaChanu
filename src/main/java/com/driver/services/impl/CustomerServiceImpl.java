@@ -3,7 +3,6 @@ package com.driver.services.impl;
 import com.driver.model.TripBooking;
 import com.driver.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.driver.model.Customer;
@@ -47,12 +46,12 @@ public class CustomerServiceImpl implements CustomerService {
 		//Avoid using SQL query
 		TripBooking tripBooking = new TripBooking();
 		Driver driver = null;
-		List<Driver> listOfDrivers = driverRepository2.findAll(Sort.by(Sort.Direction.ASC, "driverId"));
+		List<Driver> listOfDrivers = driverRepository2.findAll();
 	
 		for(Driver drivers:listOfDrivers){
 			if(drivers.getCab().getAvailable()==Boolean.TRUE){
-				driver = drivers;
-				break;
+				if(driver==null || driver.getDriverId()>drivers.getDriverId())
+					driver = drivers;
 			}
 		}
 
